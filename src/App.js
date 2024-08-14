@@ -3,6 +3,7 @@ import './App.css';
 import UserList from './components/List/UserList';
 import InputForm from './components/Input/InputForm';
 import Container from './components/UI/Containers/Container';
+import PopUpError from './components/ErrorPopUp/PopUpAgeError/PopUpError';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     age: '23',
   }])
 
+
   const addUserHandler = (newUser) => {
     setUsers((prevUsers) => {
       const updatedUsers = [newUser, ...prevUsers];
@@ -34,17 +36,20 @@ function App() {
 
     setUsers((prevUsers) => {
       const idDeleteUser = prevUsers.findIndex((elem) => elem.id === deleteUserData.id);
-      const newUsersList = prevUsers;
-      newUsersList.splice(idDeleteUser, 1);
+      prevUsers.splice(idDeleteUser, 1);
 
-      return [...newUsersList]
+      return [...prevUsers]
     })
+  }
+
+  const exitPopUpHandler = () => {
   }
 
   return (
     <div className="App">
-      <h2>Список пользователей</h2>
+      {/* {error&&<PopUpError onExitPopUp={exitPopUpHandler} title={error.title} message={error.message} />} */}
       <Container className='container__medium'>
+        <h2>Список пользователей</h2>
         <InputForm onAddNewUser={addUserHandler}/>
         <UserList onDeleteUser={deleteUserHandler} usersData={users}/>
       </Container>
