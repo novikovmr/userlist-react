@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from '../UI/Buttons/Button';
 
 import styles from './InputForm.module.css';
@@ -7,22 +7,17 @@ import PopUpAgeError from '../ErrorPopUp/PopUpAgeError/PopUpError';
 
 function InputForm(props) {
 
-  const [inputName, setInputName] = useState('');
-  const [inputAge, setInputAge] = useState('');
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
   const [error, setError] = useState();
-
-  const userNameChangeHandler = (event) => {
-    setInputName(event.target.value);
-  }
-
-  const userAgeChangeHandler = (event) => {
-    setInputAge(event.target.value);
-  }
 
   const submitHandler = (event) => {
     event.preventDefault();
+    const inputUserName = nameInputRef.current.value;
+    const inputUserAge = ageInputRef.current.value;
 
-    if (inputName.trim().length === 0 || inputName.trim().length === 0) {
+    if (inputUserName.trim().length === 0 || inputUserAge.trim().length === 0) {
       setError({
         title: 'Некорректные данные!',
         message: 'Поля обязательны для заполнения'
@@ -30,7 +25,7 @@ function InputForm(props) {
       return;
     }
 
-    if (+inputAge <= 0) {
+    if (+inputUserAge <= 0) {
       setError({
         title: 'Некорректный возраст!',
         message: 'Возраст должен быть больше 0'
@@ -40,19 +35,18 @@ function InputForm(props) {
 
     const newUser = {
       id: Math.random().toString(),
-      name: inputName,
-      age: inputAge,
+      name: inputUserName,
+      age: inputUserAge,
     }
 
     props.onAddNewUser(newUser)
-    setInputName('');
-    setInputAge('');
+    nameInputRef.current.value = '';
+    ageInputRef.current.value = '';
   }
 
   const exitPopUpHandle = () => {
     setError();
-    setInputName('');
-    setInputAge('');
+
   }
 
   return (
@@ -61,11 +55,23 @@ function InputForm(props) {
       <form onSubmit={submitHandler} className={`${styles['input-form']}`}>
         <div className={`${styles['input__name']}`}>
           <label htmlFor="formName">Имя</label>
-          <input className={`${styles['input__field']}`} type='text' name='formName' id='formName' value={inputName} onChange={userNameChangeHandler}></input>
+          <input 
+            className={`${styles['input__field']}`} 
+            type='text' 
+            name='formName' 
+            id='formName' 
+            ref={nameInputRef} 
+          />
         </div>
         <div className={`${styles['input__age']}`}>
           <label htmlFor="formAge">Возраст</label>
-          <input className={`${styles['input__field']}`} type='number' name='formAge' id='formAge' value={inputAge} onChange={userAgeChangeHandler}></input>
+          <input 
+            className={`${styles['input__field']}`} 
+            type='number' 
+            name='formAge' 
+            id='formAge' 
+            ref={ageInputRef}
+          />
         </div>
         <div className={`${styles['input__buttons']}`}>
           <Button type='submit'>Добавить пользователя</Button>

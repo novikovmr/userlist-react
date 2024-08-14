@@ -3,7 +3,6 @@ import './App.css';
 import UserList from './components/List/UserList';
 import InputForm from './components/Input/InputForm';
 import Container from './components/UI/Containers/Container';
-import PopUpError from './components/ErrorPopUp/PopUpAgeError/PopUpError';
 
 function App() {
 
@@ -40,9 +39,6 @@ function App() {
 
       return [...prevUsers]
     })
-  }
-
-  const exitPopUpHandler = () => {
   }
 
   return (
