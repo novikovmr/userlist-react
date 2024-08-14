@@ -56,7 +56,7 @@ function InputForm(props) {
   }
 
   return (
-    <div>
+    <React.Fragment>
     {error && <PopUpAgeError onExitPopUp={exitPopUpHandle} title={error.title} message={error.message}/>}
       <form onSubmit={submitHandler} className={`${styles['input-form']}`}>
         <div className={`${styles['input__name']}`}>
@@ -71,7 +71,7 @@ function InputForm(props) {
           <Button type='submit'>Добавить пользователя</Button>
         </div>
       </form>
-    </div>
+    </React.Fragment>
   )
 }
 

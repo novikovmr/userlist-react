@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import UserList from './components/List/UserList';
 import InputForm from './components/Input/InputForm';
@@ -46,14 +46,13 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {/* {error&&<PopUpError onExitPopUp={exitPopUpHandler} title={error.title} message={error.message} />} */}
+    <React.Fragment >
       <Container className='container__medium'>
         <h2>Список пользователей</h2>
         <InputForm onAddNewUser={addUserHandler}/>
         <UserList onDeleteUser={deleteUserHandler} usersData={users}/>
       </Container>
-    </div>
+    </React.Fragment>
   );
 }
 
