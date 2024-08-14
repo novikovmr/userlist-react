@@ -1,0 +1,12 @@
+.userList {
+  width: 600px;
+  min-height: 105px;
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* gap: 8px; */
+
+  background-color: #d2d2d246;
+  border: 1px solid #675656;
+}

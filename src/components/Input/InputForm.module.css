@@ -1,0 +1,38 @@
+.input-form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+  margin-bottom: 15px;
+
+  border: 1px solid #675656;
+  background-color: #d2d2d246;
+}
+
+
+.input__name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input__age {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.input__field {
+  width: 85%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #675656;
+  outline: none;
+}
+
+
+.input__buttons {
+  display: flex;
+  padding-top: 15px;
+  justify-content: center;
+}
